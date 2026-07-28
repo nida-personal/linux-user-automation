@@ -1,6 +1,6 @@
 ---
 - name: Ensure user groups exist
- ansible.builtin.group:
+  ansible.builtin.group:
     name: "{{ item.group }}"
     state: present
   loop: "{{ manage_users_users }}"
@@ -16,14 +16,14 @@
   loop: "{{ manage_users_users }}"
 
 - name: Add sudo access for eligible users
- ansible.builtin.template:
+  ansible.builtin.template:
     src: sudoers.j2
     dest: "/etc/sudoers.d/{{ item.username }}"
-    mode: '0440'
-    validate: 'visudo -cf %s'
+    mode: "0440"
+    validate: "visudo -cf %s"
   loop: "{{ manage_users_users }}"
   when:
-    - item.sudo_access == true
+    - item.sudo_access
     - item.state == "present"
 
 - name: Remove sudoers file for absent users
