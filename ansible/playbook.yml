@@ -14,7 +14,7 @@
 
   post_tasks:
     - name: List all users created
-      command: cat /etc/passwd
+      ansible.builtin.command: cat /etc/passwd
       register: passwd_output
       changed_when: false
 
