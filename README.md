@@ -72,3 +72,14 @@ Every push to main triggers GitHub Actions which:
 - Understood Jinja2 templating for real system config files
 - Practiced idempotent design — core Ansible principle
 - Set up a real CI pipeline that validates on every commit
+
+## Test Results
+
+### Ansible Playbook Output
+![Ansible Output](screenshots/ansible-output.png)
+
+### Users Created on Linux Server
+![Users Created](screenshots/users-created.png)
+
+### Sudo Access Verified
+![Sudo Access](screenshots/sudo-access.png)
