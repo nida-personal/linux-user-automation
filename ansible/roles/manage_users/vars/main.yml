@@ -1,4 +1,4 @@
-users:
+manage_users_users:
 - full_name: John Doe
   group: developers
   state: present

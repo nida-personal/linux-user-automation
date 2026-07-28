@@ -1,34 +1,34 @@
 ---
 - name: Ensure user groups exist
-  group:
+ ansible.builtin.group:
     name: "{{ item.group }}"
     state: present
-  loop: "{{ users }}"
+  loop: "{{ manage_users_users }}"
 
 - name: Create or remove users
-  user:
+  ansible.builtin.user:
     name: "{{ item.username }}"
     comment: "{{ item.full_name }}"
     group: "{{ item.group }}"
     state: "{{ item.state }}"
     shell: /bin/bash
     create_home: true
-  loop: "{{ users }}"
+  loop: "{{ manage_users_users }}"
 
 - name: Add sudo access for eligible users
-  template:
+ ansible.builtin.template:
     src: sudoers.j2
     dest: "/etc/sudoers.d/{{ item.username }}"
     mode: '0440'
     validate: 'visudo -cf %s'
-  loop: "{{ users }}"
+  loop: "{{ manage_users_users }}"
   when:
     - item.sudo_access == true
     - item.state == "present"
 
 - name: Remove sudoers file for absent users
-  file:
+  ansible.builtin.file:
     path: "/etc/sudoers.d/{{ item.username }}"
     state: absent
-  loop: "{{ users }}"
+  loop: "{{ manage_users_users }}"
   when: item.state == "absent"

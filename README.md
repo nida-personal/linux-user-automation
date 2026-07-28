@@ -18,18 +18,21 @@ users.csv → generate_vars.py → vars/main.yml → Ansible Role → Linux Serv
 - GCP Compute Engine — test environment
 
 ## Project Structure
+## Project Structure
+```
 linux-user-automation/
-├── users.csv # Input: user list
+├── users.csv
 ├── scripts/
-│ └── generate_vars.py # Python: CSV to Ansible vars
+│   └── generate_vars.py
 ├── ansible/
-│ ├── playbook.yml # Master playbook
-│ └── roles/
-│ └── manage_users/
-│ ├── tasks/main.yml # User management tasks
-│ ├── templates/ # Jinja2 sudoers template
-│ └── vars/main.yml # Generated user variables
-└── .github/workflows/ci.yml # GitHub Actions CI pipeline
+│   ├── playbook.yml
+│   └── roles/
+│       └── manage_users/
+│           ├── tasks/main.yml
+│           ├── templates/
+│           └── vars/main.yml
+└── .github/workflows/ci.yml
+```
 
 ## How To Run
 

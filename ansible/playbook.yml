@@ -6,7 +6,7 @@
 
   pre_tasks:
     - name: Display target hosts
-      debug:
+      ansible.builtin.debug:
         msg: "Running user management on {{ inventory_hostname }}"
 
   roles:
@@ -19,5 +19,5 @@
       changed_when: false
 
     - name: Show user summary
-      debug:
+      ansible.builtin.debug:
         msg: "User management completed on {{ inventory_hostname }}"

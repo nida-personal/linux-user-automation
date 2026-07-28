@@ -23,7 +23,7 @@ def read_users_from_csv(csv_file):
 
 def write_vars_file(users, vars_file):
     """Write users list to Ansible vars YAML file."""
-    data = {"users": users}
+    data = {"manage_users_users": users}
     os.makedirs(os.path.dirname(vars_file), exist_ok=True)
     with open(vars_file, "w") as f:
         yaml.dump(data, f, default_flow_style=False, allow_unicode=True)
