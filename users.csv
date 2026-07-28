@@ -1,0 +1,6 @@
+username,full_name,group,sudo_access,state
+john_doe,John Doe,developers,yes,present
+jane_smith,Jane Smith,developers,no,present
+bob_wilson,Bob Wilson,ops,yes,present
+alice_brown,Alice Brown,ops,no,present
+charlie_lee,Charlie Lee,developers,yes,absent

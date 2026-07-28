@@ -1,0 +1,34 @@
+---
+- name: Ensure user groups exist
+  group:
+    name: "{{ item.group }}"
+    state: present
+  loop: "{{ users }}"
+
+- name: Create or remove users
+  user:
+    name: "{{ item.username }}"
+    comment: "{{ item.full_name }}"
+    group: "{{ item.group }}"
+    state: "{{ item.state }}"
+    shell: /bin/bash
+    create_home: true
+  loop: "{{ users }}"
+
+- name: Add sudo access for eligible users
+  template:
+    src: sudoers.j2
+    dest: "/etc/sudoers.d/{{ item.username }}"
+    mode: '0440'
+    validate: 'visudo -cf %s'
+  loop: "{{ users }}"
+  when:
+    - item.sudo_access == true
+    - item.state == "present"
+
+- name: Remove sudoers file for absent users
+  file:
+    path: "/etc/sudoers.d/{{ item.username }}"
+    state: absent
+  loop: "{{ users }}"
+  when: item.state == "absent"

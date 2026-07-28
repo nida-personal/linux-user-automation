@@ -1,0 +1,23 @@
+---
+- name: Linux User Management Automation
+  hosts: all
+  become: true
+  gather_facts: true
+
+  pre_tasks:
+    - name: Display target hosts
+      debug:
+        msg: "Running user management on {{ inventory_hostname }}"
+
+  roles:
+    - manage_users
+
+  post_tasks:
+    - name: List all users created
+      command: cat /etc/passwd
+      register: passwd_output
+      changed_when: false
+
+    - name: Show user summary
+      debug:
+        msg: "User management completed on {{ inventory_hostname }}"

@@ -1,0 +1,8 @@
+*.retry
+*.pyc
+__pycache__/
+reports/
+*.log
+.env
+secrets/
+ansible/vars/vault.yml
