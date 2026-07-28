@@ -1,26 +1,26 @@
 manage_users_users:
-- full_name: John Doe
-  group: developers
-  state: present
-  sudo_access: true
-  username: john_doe
-- full_name: Jane Smith
-  group: developers
-  state: present
-  sudo_access: false
-  username: jane_smith
-- full_name: Bob Wilson
-  group: ops
-  state: present
-  sudo_access: true
-  username: bob_wilson
-- full_name: Alice Brown
-  group: ops
-  state: present
-  sudo_access: false
-  username: alice_brown
-- full_name: Charlie Lee
-  group: developers
-  state: absent
-  sudo_access: true
-  username: charlie_lee
+  - username: john_doe
+    full_name: John Doe
+    group: developers
+    sudo_access: true
+    state: present
+  - username: jane_smith
+    full_name: Jane Smith
+    group: developers
+    sudo_access: false
+    state: present
+  - username: bob_wilson
+    full_name: Bob Wilson
+    group: ops
+    sudo_access: true
+    state: present
+  - username: alice_brown
+    full_name: Alice Brown
+    group: ops
+    sudo_access: false
+    state: present
+  - username: charlie_lee
+    full_name: Charlie Lee
+    group: developers
+    sudo_access: true
+    state: absent

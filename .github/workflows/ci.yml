@@ -21,7 +21,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install ansible ansible-lint pyyaml
+        pip install ansible ansible-lint pyyaml ruamel.yaml
 
     - name: Run Python script
       run: |

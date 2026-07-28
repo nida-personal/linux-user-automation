@@ -1,5 +1,5 @@
 import csv
-import yaml
+from ruamel.yaml import YAML
 import os
 
 # Paths
@@ -23,10 +23,11 @@ def read_users_from_csv(csv_file):
 
 def write_vars_file(users, vars_file):
     """Write users list to Ansible vars YAML file."""
-    data = {"manage_users_users": users}
     os.makedirs(os.path.dirname(vars_file), exist_ok=True)
+    yaml = YAML()
+    yaml.indent(mapping=2, sequence=4, offset=2)
     with open(vars_file, "w") as f:
-        yaml.dump(data, f, default_flow_style=False, allow_unicode=True)
+        yaml.dump({"manage_users_users": users}, f)
     print(f"vars file written to: {vars_file}")
     print(f"Total users processed: {len(users)}")
     for user in users:
